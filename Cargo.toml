@@ -14,8 +14,6 @@ path = "src/main.rs"
 actix-web = "4"
 chrono = "0.4.39"
 config = "0.15.4"
-env_logger = "0.11.6"
-log = "0.4.22"
 serde = { version = "1.0.216", features = ["derive"] }
 sqlx = { version = "0.8.2", features = [
 	"runtime-tokio",
@@ -24,6 +22,13 @@ sqlx = { version = "0.8.2", features = [
 	"uuid",
 ] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+tracing = { version = "0.1.41", features = ["log"] }
+tracing-bunyan-formatter = "0.3.10"
+tracing-log = "0.2.0"
+tracing-subscriber = { version = "0.3.19", features = [
+	"env-filter",
+	"registry",
+] }
 uuid = { version = "1.11.0", features = ["v4"] }
 
 [dev-dependencies]
