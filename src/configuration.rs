@@ -1,5 +1,6 @@
 use secrecy::{ExposeSecret, SecretBox};
 
+#[derive(Debug)]
 pub enum Environment {
     Local,
     Production,
