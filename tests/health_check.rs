@@ -51,7 +51,7 @@ pub async fn configure_database(config: &DatabaseSettings) -> PgPool {
         PgConnection::connect(&config.connection_string_without_db().expose_secret())
             .await
             .expect("Failed to connect to the postgres database");
-
+    println!("database_name: {}", config.database_name);
     sqlx::query(format!(r#"CREATE DATABASE "{}";"#, config.database_name).as_str())
         .execute(&mut connection)
         .await
