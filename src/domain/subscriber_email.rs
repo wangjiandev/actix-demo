@@ -25,14 +25,16 @@ mod tests {
     use claim::assert_err;
     use fake::faker::internet::en::SafeEmail;
     use fake::Fake;
+    use quickcheck::{Arbitrary, Gen};
 
     #[derive(Debug, Clone)]
     struct ValidEmailFixture(pub String);
 
-    impl quickcheck::Arbitrary for ValidEmailFixture {
-        fn arbitrary(g: &mut quickcheck::Gen) -> Self {
-            let email = SafeEmail().fake_with_rng(g);
-            Self(email)
+    impl Arbitrary for ValidEmailFixture {
+        fn arbitrary(_g: &mut Gen) -> ValidEmailFixture {
+            let email = SafeEmail().fake::<String>();
+            println!("email: {}", &email);
+            ValidEmailFixture(email)
         }
     }
 
