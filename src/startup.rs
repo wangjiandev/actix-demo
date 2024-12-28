@@ -8,13 +8,16 @@ use std::io::Error;
 use std::net::TcpListener;
 use tracing_actix_web::TracingLogger;
 
+/// 运行服务器
 pub fn run(
     listener: TcpListener,
     db_pool: PgPool,
     email_client: EmailClient,
 ) -> Result<Server, Error> {
+    // 将数据库连接池和邮件发送客户端包装为Data对象
     let db_pool = Data::new(db_pool);
     let email_client = Data::new(email_client);
+    // 创建服务器
     let server = HttpServer::new(move || {
         App::new()
             .wrap(TracingLogger::default())
